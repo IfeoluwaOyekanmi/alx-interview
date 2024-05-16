@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def isWinner(x, nums):
     """winner's function"""
     if not nums or x < 1:
