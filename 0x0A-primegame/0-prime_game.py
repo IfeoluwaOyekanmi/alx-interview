@@ -1,27 +1,33 @@
 #!/usr/bin/python3
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
 def isWinner(x, nums):
-    """winner's function"""
-    if not nums or x < 1:
-        return None
-    max_num = max(nums)
+    maria_wins = 0
+    ben_wins = 0
 
-    my_filter = [True for _ in range(max(max_num + 1, 2))]
-    for i in range(2, int(pow(max_num, 0.5)) + 1):
-        if not my_filter[i]:
+    for n in nums:
+        if n == 1:
+            ben_wins += 1
             continue
-        for j in range(i * i, max_num + 1, i):
-            my_filter[j] = False
-    my_filter[0] = my_filter[1] = False
-    y = 0
-    for i in range(len(my_filter)):
-        if my_filter[i]:
-            y += 1
-        my_filter[i] = y
-    player1 = 0
-    for x in nums:
-        player1 += my_filter[x] % 2 == 1
-    if player1 * 2 == len(nums):
-        return None
-    if player1 * 2 > len(nums):
+        if n % 2 == 0:
+            maria_wins += 1
+        else:
+            if is_prime(n):
+                maria_wins += 1
+            else:
+                ben_wins += 1
+    if maria_wins > ben_wins:
         return "Maria"
-    return "Ben"
+    elif maria_wins < ben_wins:
+        return "Ben"
+    else:
+        return None
+# Test the function
+x = 3
+nums = [4, 5, 1]
+print(isWinner(x, nums))  # Output: "Maria" 
