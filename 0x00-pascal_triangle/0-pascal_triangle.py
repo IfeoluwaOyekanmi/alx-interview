@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 "Pascal's trianle function"
-
-
 def pascal_triangle(n):
     """
     Generates Pascal's triangle up to the specified number of rows.
@@ -11,7 +9,6 @@ def pascal_triangle(n):
     :return: A list containing Pascal's triangle up to the nth row.
     :rtype: list[list[int]]
     """
-
     # Base cases
     if n <= 0:
         return []
